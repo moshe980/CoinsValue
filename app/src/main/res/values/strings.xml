@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CoinsValue</string>
+    <string name="shekel">%s₪ </string>
 </resources>

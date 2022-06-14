@@ -38,14 +38,20 @@ class MainActivity : AppCompatActivity() {
 
         viewmodel.coins.observe(this) { coins ->
             coins.forEach {
-                data.add(CoinBoundary( it.name, it.value, it.isGreaterTanDollar))
+                data.add(
+                    CoinBoundary(
+                        it.name,
+                        String.format("%.3f", it.value).toDouble(),
+                        it.isGreaterTanDollar
+                    )
+                )
             }
             val adapter = MyAdapter(data)
 
             adapter.setOnItemClickListener { position ->
                 flipAnimationStart(position)
                 binding.recyclerview[position].findViewById<TextView>(R.id.textView).text =
-                    data[position].value.toString()
+                    getString(R.string.shekel, data[position].value.toString())
             }
             binding.recyclerview.adapter = adapter
         }
